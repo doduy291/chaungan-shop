@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Giỏ hàng</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%- include('../partials/css'); %>
+  </head>
+
+  <body class="animsition">
+    <!-- Header -->
+    <header class="header-v2">
+      <%- include('../partials/header'); %>
+    </header>
+
+    <!-- sidebar -->
+    <%- include('../partials/sidebar'); %>
+    <!-- Cart -->
+    <%- include('../partials/cart'); %>
+
+    <% const formatter = new Intl.NumberFormat('vi-VN', {minimumFractionDigits: 0,});%>
+        <!-- Success Order -->
+        <section>
+            <div class="container">
+                <div class="order-success col-12 col-lg-6" >
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div class="place-bill-info">
+                            <img src="/images/icons/success-icon.png" alt="IMG">
+                            <h4>Cám ơn bạn đã mua hàng!</h4>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>Mã hóa đơn: <%= infoHD.sohoadon %></label>
+                                </div>
+                                <div class="col-lg-12 ">
+                                  <label>Thông tin liên lạc</label>
+                                  <label>Họ và tên: <%= hovatenHD %> </label>
+                                  <label>Số điện thoại:<%= sdtHD %></label>
+                                  <label>Email: <%= emailHD %> </label>
+                                  <label>Địa chỉ: <%= infoHD.diachigiaohang %></label>
+                                </div>
+                                <div class="col-lg-12 ">
+                                    <label>Tổng tiền đơn hàng: <%= formatter.format(parseInt(infoHD.tongtien)) %> VNĐ</label>
+                                </div>
+                                <div class="col-lg-12">
+                                  <% if(infoHD.hinhthucthanhtoan === "0") { %>
+                                  <label>Payment Method: <%= infoHD.hinhthucthanhtoan === "0" ? "Thanh toán COD" : infoHD.hinhthucthanhtoan %> </label>
+                                  <% } %>
+                                  <% if(infoHD.hinhthucthanhtoan === "1") { %>
+                                    <label>Payment Method: <%= infoHD.hinhthucthanhtoan === "1" ? "Nhận tại cửa hàng" : infoHD.hinhthucthanhtoan %> </label>
+                                  <% } %>
+                                </div>
+                                <div class=" col-lg-12  continue-shopping">
+                                    <a href="/product" class="continue-shopping-site">Tiếp tục Shopping</a>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Success Order End -->
+
+
+    <!-- Footer -->
+    <%- include('../partials/footer'); %>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+        <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+    </div>
+
+    <!-- Script  -->
+    <%- include('../partials/js'); %>
+  </body>
+</html>

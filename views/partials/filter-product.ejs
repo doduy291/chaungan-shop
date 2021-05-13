@@ -1,0 +1,89 @@
+<div class="flex-w flex-sb-m p-b-52">
+  <!-- Filter Button -->
+  <div class="flex-w flex-c-m m-tb-10">
+    <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+      <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+      <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i> Tìm kiếm
+    </div>
+  </div>
+ 
+  <!-- Search product -->
+  <div class="dis-none panel-search w-full p-t-10 p-b-15">
+    <div class="bor8 dis-flex p-l-15">
+      <form action="/product/filter/" method="GET" style="display: contents;">
+      <button type="submit" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04 auto-click-searchprd">
+        <i class="zmdi zmdi-search"></i>
+      </button>
+
+      <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" id="quicksearch" name="timkiemsp" placeholder="Tìm kiếm" value='<% if(timkiemsp){ %><%= timkiemsp %><% } %>' />
+      </form>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="w-full p-t-10">
+    <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+      <!-- Sort -->
+      <div class="filter-col1 p-r-15 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Lọc theo</div>
+
+        <ul class="menu-sort">
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&orderNewest=newest" class="filter-link stext-106 trans-04 order-newest <% if(orderNewest === 'newest'){%> filter-link-active <% } %>" > Sản phẩm mới </a>
+          </li>
+          <li class="p-b-6 orderprice">
+            <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %>&orderPrice=ASC"  class="filter-link stext-106 trans-04 ordprice-asc <% if(orderPrice === 'ASC'){%> filter-link-active <% } %>"> Giá: thấp đến cao </a>
+          </li>
+          <li class="p-b-6 orderprice">
+            <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %>&orderPrice=DESC"  class="filter-link stext-106 trans-04 ordprice-desc <% if(orderPrice === 'DESC'){%> filter-link-active <% } %>"> Giá: cao đến thấp </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Price -->
+      <div class="filter-col2 p-r-15 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Loại sản phẩm</div>
+
+        <ul class="lsp-filter">
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&lsp=1" class="filter-link stext-106 trans-04 lsp-ao <% if(loaisanpham === '1'){%> filter-link-active <% } %>">Áo</a>
+          </li>
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&lsp=2" class="filter-link stext-106 trans-04 lsp-quan <% if(loaisanpham === '2'){%> filter-link-active <% } %>">Quần</a>
+          </li>
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&lsp=5" class="filter-link stext-106 trans-04 lsp-non <% if(loaisanpham === '5'){%> filter-link-active <% } %>" >Nón</a>
+          </li>
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&lsp=8" class="filter-link stext-106 trans-04 lsp-giay <% if(loaisanpham === '8'){%> filter-link-active <% } %>">Giày</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- Giới tính -->
+      <div class="filter-col4 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Loại đồ</div>
+
+        <ul class="ld-filter">
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&ld=Nam" class="filter-link stext-106 trans-04 ld-nam <% if(loaido === 'Nam'){%> filter-link-active <% } %>"> Đồ Nam </a>
+          </li>
+          <li class="p-b-6">
+            <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&ld=Nữ"  class="filter-link stext-106 trans-04 ld-nu <% if(loaido === 'Nữ'){%> filter-link-active <% } %>"> Đồ Nữ </a>
+          </li>
+        </ul>
+      </div>
+
+       <!-- Hãng -->
+       <div class="filter-col4 p-b-27">
+        <div class="mtext-102 cl2 p-b-15">Hãng</div>
+        <div class="hang-filter flex-w p-t-4 m-r--5">
+          <% for(const lhsp of listhangsp) {%>
+          <a href="/product/filter/?page=<%= currentPage %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>&hang=<%= lhsp.idhangsanpham %>" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5" id="<%= lhsp.tenhang %>" data-hang="<%= lhsp.tenhang %>"> <%= lhsp.tenhang %> </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

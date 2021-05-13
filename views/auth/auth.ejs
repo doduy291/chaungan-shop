@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Châu Ngân Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="/css/auth.css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="cont">
+    <form action="/auth/api/auth/signin" method="POST">
+    <div class="form sign-in">
+      <h2>Đăng nhập</h2>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" />
+        <% if(typeof errors_signin != 'undefined') { %>
+          <% errors_signin.forEach(function(errors_msg) { %>
+            <% if(errors_msg.param === "email") { %>
+              <p class="message_err">*<%= errors_msg.msg %></p>
+            <%}%>
+          <% }) %>
+        <% } %>
+      </label>
+      
+      <label>
+        <span>Mật khẩu</span>
+        <input type="password" name="matkhau" />
+          <% if(typeof errors_signin != 'undefined') { %>
+            <% errors_signin.forEach(function(errors_msg) { %>
+              <% if(errors_msg.param === "matkhau") { %>
+                <p class="message_err">*<%= errors_msg.msg %></p>
+              <%}%>
+            <% }) %>
+          <% } %>
+      </label>
+      <button class="submit" type="submit">Đăng nhập</button>
+      <p  class="forgot-pass" style="text-align: center;"><a href="/auth/forgot-password">Quên mật khẩu?</a></p>  
+      <p style="text-align: center;"><a href="/">Trở về trang chủ</a></p>  
+    </div>
+    </form>
+
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img-text m-up">
+          <h2>Bạn chưa có tài khoản?</h2>
+          <p>Đăng ký và nhận được nhiều ưu đãi!</p>
+        </div>
+        <div class="img-text m-in">
+          <h2>Bạn đã có tài khoản?</h2>
+          <p>Đăng nhập ngay!</p>
+        </div>
+        <div class="img-btn">
+          <span class="m-up">Đăng ký</span>
+          <span class="m-in">Đăng nhập</span>
+        </div>
+      </div>
+      <form action="/auth/api/auth/signup" method="POST">
+      <div class="form sign-up">
+        <h2>Đăng ký</h2>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" />
+          <% if(typeof errors_signup != 'undefined') { %>
+            <% errors_signup.forEach(function(errors_msg) { %>
+              <% if(errors_msg.param === "email") { %>
+                <p class="message_err">*<%= errors_msg.msg %></p>
+              <%}%>
+            <% }) %>
+          <% } %>
+        </label>
+        <label>
+          <span>Mật khẩu</span>
+          <input type="password" name="matkhau" />
+          <% if(typeof errors_signup != 'undefined') { %>
+            <% errors_signup.forEach(function(errors_msg) { %>
+              <% if(errors_msg.param === "matkhau") { %>
+                <p class="message_err">*<%= errors_msg.msg %></p>
+              <%}%>
+            <% }) %>
+          <% } %>
+        </label>
+        <button type="submit" class="submit">Đăng ký ngay!</button>
+        <p style="text-align: center;"><a href="/">Trở về trang chủ</a></p>  
+      </div>
+    </form>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/auth.js"></script>
+  <script>
+  if($('.sign-up .message_err').length !== 0) {
+    console.log($('.sign-up .message_err').length)
+    $('.img-btn').click()
+    sessionStorage.setItem('clickDangKy', 'eventClickDangKy')
+    console.log(sessionStorage.getItem('clickDangKy'))
+  }
+  </script>
+</body>
+</html>

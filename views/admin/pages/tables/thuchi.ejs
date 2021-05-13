@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Châu Ngân | Hoạt động</title>
+
+
+    <%- include('../../../partials/css-admin'); %>
+        <!--=============================================================================================-->
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('../../../partials/header-admin'); %>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/admin/tongquan" class="brand-link">
+                    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light"><b>CHÂU NGÂN</b></span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <%- include('../../../partials/menu-admin'); %>
+                        <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Thu chi</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Thu Chi</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card">
+                                        <!-- <div class="card-header">
+                                                <h3 class="card-title">Hóa đơn</h3>
+                                            </div> -->
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Mã thu chi</th>
+                                                        <th>Nhà cung cấp</th>
+                                                        <th>Tên khách</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Loại</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Hạng mục</th>
+                                                        <th>Tổng</th>
+                                                        <th>Ghi chú</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <% if(listTC.length){for(var i=0;i< listTC.length;i++){ %>
+                                                        <tr>
+                                                            <td scope="row">
+                                                                <%= (i+1) %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listTC[i].mathuchi %>
+                                                            </td>
+                                                            <% if(listTC[i].idnhacungcap !==null){ %>
+                                                                <td>
+                                                                    <%= listTC[i].nhacungcap.tennhacungcap %>
+                                                                </td>
+                                                                <% } else {%>
+                                                                    <td>
+
+                                                                    </td>
+                                                                    <% } %>
+
+                                                                        <% if(listTC[i].idkhachhang !==null){ %>
+                                                                            <td>
+                                                                                <%= listTC[i].khachhang.tenkhachhang %>
+                                                                            </td>
+                                                                            <% } else { %>
+                                                                                <td>
+
+                                                                                </td>
+                                                                                <% } %>
+
+                                                                                    <% if(listTC[i].idnguoidung
+                                                                                        !==null){ %>
+                                                                                        <td>
+                                                                                            <%= listTC[i].nguoidung.tennguoidung
+                                                                                                %>
+                                                                                        </td>
+                                                                                        <% } else {%>
+                                                                                            <td>
+
+                                                                                            </td>
+                                                                                            <% } %>
+                                                                                                <td>
+                                                                                                    <%= listTC[i].loaiphieu
+                                                                                                        %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <% var a=new Date(
+                                                                                                        listTC[i].ngaytao)
+                                                                                                        %>
+                                                                                                        <% var
+                                                                                                            b=a.getDate()
+                                                                                                            +"/"+
+                                                                                                            (a.getMonth()
+                                                                                                            + 1) +"/"+
+                                                                                                            a.getFullYear()
+                                                                                                            +"_"+
+                                                                                                            a.getHours()
+                                                                                                            + ":" +
+                                                                                                            a.getMinutes()
+                                                                                                            %>
+                                                                                                            <%= b %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%= listTC[i].hangmucthuchi
+                                                                                                        %>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <% var x=new
+                                                                                                        Intl.NumberFormat({
+                                                                                                        style: 'currency'
+                                                                                                        ,
+                                                                                                        currency: 'VND'
+                                                                                                        }).format(listTC[i].tongtien)
+                                                                                                        %>
+                                                                                                        <b
+                                                                                                            style="color: green;">
+                                                                                                            <%= x %>
+                                                                                                        </b>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <%= listTC[i].ghichu
+                                                                                                        %>
+                                                                                                </td>
+                                                        </tr>
+                                                        <% }} %>
+                                                </tbody>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Mã thu chi</th>
+                                                        <th>Nhà cung cấp</th>
+                                                        <th>Tên khách</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Loại</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Hạng mục</th>
+                                                        <th>Tổng</th>
+                                                        <th>Ghi chú</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Script -->
+    <%- include('../../../partials/js-admin'); %>
+
+</body>
+
+</html>

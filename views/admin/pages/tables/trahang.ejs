@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Châu Ngân | Trả hàng</title>
+
+    <%- include('../../../partials/css-admin'); %>
+        <!--=============================================================================================-->
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('../../../partials/header-admin'); %>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="..//admin/tongquan" class="brand-link">
+                    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light"><b>CHÂU NGÂN</b></span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+
+                    <!-- Sidebar Menu -->
+                    <%- include('../../../partials/menu-admin'); %>
+                        <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Trả Hàng</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Trả hàng</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card">
+
+                                        <div class="card-body">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Số HĐ</th>
+                                                        <th>Tên khách</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Hoàn tiền</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Ngày nhận</th>
+                                                        <th>Chi tiết</th>
+                                                    </tr>
+                                                </thead>
+                                                <% if(listTH.length> 0){for(var i = 0;i < listTH.length;i++){ %>
+                                                        </listTH.length>
+                                                        <tbody>
+                                                            <td>
+                                                                <%= (i+1)%>
+                                                            </td>
+                                                            <td>
+                                                                <%= listTH[i].hoadon.sohoadon %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listTH[i].khachhang.tenkhachhang %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listTH[i].nguoidung.tennguoidung %>
+                                                            </td>
+                                                            <% if(listTH[i].trangthai===1){ %>
+                                                                <td>
+                                                                    Đã nhận
+                                                                </td>
+                                                                <% } else { %>
+                                                                    <td>
+                                                                        Đang nhận
+                                                                    </td>
+                                                                    <% } %>
+                                                                        <% if(listTH[i].hoantien===1){ %>
+                                                                            <td style="color: green">
+                                                                                Đã thanh toán
+                                                                            </td>
+                                                                            <% } else { %>
+                                                                                <td style="color: red;">
+                                                                                    Chưa thanh toán
+                                                                                </td>
+                                                                                <% } %>
+                                                                                    <td>
+                                                                                        <% var x=new Intl.NumberFormat({
+                                                                                            style: 'currency' ,
+                                                                                            currency: 'VND'
+                                                                                            }).format(listTH[i].tongtien)
+                                                                                            %>
+                                                                                            <b style="color: green;">
+                                                                                                <%= x %>
+                                                                                            </b>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <% var a=new
+                                                                                            Date(listTH[i].ngaynhan) %>
+                                                                                            <% var b=a.getDate() +"/"+
+                                                                                                (a.getMonth() + 1) +"/"+
+                                                                                                a.getFullYear() %>
+                                                                                                <!-- <%= listTH[i].ngaynhan %> -->
+                                                                                                <%= b %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <a href="/admin/trahang"
+                                                                                            class="btn btn-primary">xem</a>
+                                                                                    </td>
+                                                        </tbody>
+                                                        <%}}%>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>STT</th>
+                                                                    <th>Số HĐ</th>
+                                                                    <th>Tên khách</th>
+                                                                    <th>Người tạo</th>
+                                                                    <th>Trạng thái</th>
+                                                                    <th>Hoàn tiền</th>
+                                                                    <th>Tổng tiền</th>
+                                                                    <th>Ngày nhận</th>
+                                                                    <th>Chi tiết</th>
+                                                                </tr>
+                                                            </tfoot>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                </section>
+
+                <!-- /.content -->
+            </div>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Script -->
+    <%- include('../../../partials/js-admin'); %>
+</body>
+
+</html>

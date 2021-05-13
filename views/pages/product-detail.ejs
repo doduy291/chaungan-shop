@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Sản phẩm</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <%- include('../partials/css'); %>
+</head>
+
+<body class="animsition">
+  <!-- Header -->
+  <header class="header-v2">
+    <%- include('../partials/header'); %>
+  </header>
+
+  <!-- sidebar -->
+  <%- include('../partials/sidebar'); %>
+
+    <!-- Cart -->
+    <%- include('../partials/cart'); %>
+
+      <% const formatter=new Intl.NumberFormat('vi-VN', {minimumFractionDigits: 0,});%>
+        <% if(productDetail) { %>
+
+          <!-- Product Detail -->
+          <section class="sec-product-detail bg0 p-t-65 p-b-60">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-lg-7 p-b-30">
+                  <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="wrap-slick3 flex-sb flex-w">
+                      <div class="wrap-slick3-dots"></div>
+                      <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                      <div class="slick3 gallery-lb">
+                        <% console.log(new Buffer(productDetail[0].anhsanpham).toString('base64')) %>
+                          <% productDetail[0].anhsanpham=new Buffer(productDetail[0].anhsanpham).toString('base64'); %>
+
+
+                            <div class="item-slick3 getImageSizeColor"
+                              data-thumb="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>">
+                              <div class="wrap-pic-w pos-relative">
+                                <img src="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>"
+                                  alt="IMG-PRODUCT" />
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                  href="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>">
+                                  <i class="fa fa-expand"></i>
+                                </a>
+                              </div>
+                            </div>
+
+                            <div class="item-slick3 getImageSizeColor"
+                              data-thumb="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>">
+                              <div class="wrap-pic-w pos-relative">
+                                <img src="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>"
+                                  alt="IMG-PRODUCT" />
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                  href="data:image/jpeg;base64, <%= productDetail[0].anhsanpham %>">
+                                  <i class="fa fa-expand"></i>
+                                </a>
+                              </div>
+                            </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-5 p-b-30 product-detail-content">
+
+                  <div class="p-r-50 p-t-5 p-lr-0-lg">
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                      <%= productDetail[0].tensanpham %>
+                    </h4>
+
+                    <span class="cl2" style="font-size: 18px;" id="getPriceSizeColor">
+                      <%= formatter.format(productDetail[0].giabanle) %> VNĐ
+                    </span>
+
+                    <p class="stext-102 cl3 p-t-23">
+                      Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare
+                      feugiat.
+                    </p>
+
+                    <!--  -->
+                    <div class="p-t-33">
+                      <div class="flex-w flex-r-m p-b-10">
+                        <div class="size-203 flex-l-m respon6">Size</div>
+
+                        <div class="size-204 respon6-next">
+                          <div class="product-sizes bor8 bg0">
+                            <% sizeprdDetail.forEach((sizeprd)=> { %>
+                              <div class="size" data-size="<%= sizeprd.sizesanpham.tensize %>">
+                                <%= sizeprd.sizesanpham.tensize %>
+                              </div>
+                              <% }) %>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex-w flex-r-m p-b-10">
+                        <div class="size-203 flex-l-m respon6">Color</div>
+
+                        <div class="size-204 respon6-next">
+                          <div class="product-colors bor8 bg0">
+                            <% colorprdDetail.forEach((colorprd)=> { %>
+                              <div class="color" data-color="<%= colorprd.mausanpham.tenmausanpham %>"></div>
+                              <% }) %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="alert alert-danger" role="alert" id="error-group" style="display: none">
+                        <ul id="errors"></ul>
+                      </div>
+                      <div class="flex-w flex-r-m p-b-10">
+                        <div class="size-204 flex-w flex-m respon6-next">
+                          <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                              <i class="fs-16 zmdi zmdi-minus"></i>
+                            </div>
+
+                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="soluong"
+                              id="num-product" value="1" />
+
+                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                              <i class="fs-16 zmdi zmdi-plus"></i>
+                            </div>
+                          </div>
+                          <input id="tensanpham" style="display: none;" value="<%= productDetail[0].tensanpham %>">
+                          <button type="submit" class="flex-c-m cl0 hov-btn1 js-addcart-detail addcartbtn">
+                            Thêm vào giỏ hàng
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bor10 m-t-50 p-t-43 p-b-40">
+                <!-- Tab01 -->
+                <div class="tab01">
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item p-b-10">
+                      <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô tả sản phẩm</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                      <a class="nav-link" data-toggle="tab" href="#information" role="tab">Thông tin chi tiết</a>
+                    </li>
+                  </ul>
+
+                  <!-- Tab panes -->
+                  <div class="tab-content p-t-43">
+                    <!-- - -->
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                      <div class="how-pos2 p-lr-15-md">
+                        <p class="stext-102 cl6">
+                          <%= productDetail[0].motasanpham %>
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- - -->
+                    <div class="tab-pane fade" id="information" role="tabpanel">
+                      <div class="row">
+                        <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                          <ul class="p-lr-28 p-lr-15-sm">
+                            <li class="flex-w flex-t p-b-7">
+                              <span class="stext-102 cl3 size-205"> Khối lượng </span>
+
+                              <span class="stext-102 cl6 size-206"> 0.79 kg </span>
+                            </li>
+
+                            <li class="flex-w flex-t p-b-7">
+                              <span class="stext-102 cl3 size-205"> Màu </span>
+
+                              <span class="stext-102 cl6 size-206">
+                                <% colorprdDetail.forEach((colorprd)=> { %>
+                                  <%= colorprd.mausanpham.tenmausanpham %>
+                                    <% }) %>
+                              </span>
+                            </li>
+
+                            <li class="flex-w flex-t p-b-7">
+                              <span class="stext-102 cl3 size-205"> Size </span>
+                              <span class="stext-102 cl6 size-206">
+                                <% sizeprdDetail.forEach((sizeprd)=> { %>
+                                  <%= sizeprd.sizesanpham.tensize %>
+                                    <% }) %>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+              <span class="stext-107 cl6 p-lr-25"> Mã sản phẩm:
+                <% maspprdDetail.forEach((maspprd)=> { %>
+                  <%= maspprd.masanpham %>
+                    <% }) %>
+              </span>
+              <span class="stext-107 cl6 p-lr-25"> Loại đồ:
+                <% loaispprdDetail.forEach((loaispprd)=> { %>
+                  <%= loaispprd.loaisanpham.tenloaisanpham %>
+                    <% }) %>
+              </span>
+            </div>
+          </section>
+          <% } %>
+
+
+            <!-- Support section -->
+            <section id="aa-support">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="aa-support-area">
+                      <!-- single support -->
+                      <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                        <div class="aa-support-single">
+                          <span class="fa fa-truck"></span>
+                          <h4>Vận chuyển nhanh chóng</h4>
+                        </div>
+                      </div>
+                      <!-- single support -->
+                      <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                        <div class="aa-support-single">
+                          <span class="fa fa-clock-o"></span>
+                          <h4>Nhận đặt trước tại shop</h4>
+                        </div>
+                      </div>
+                      <!-- single support -->
+                      <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                        <div class="aa-support-single">
+                          <span class="fa fa-phone"></span>
+                          <h4>Hỗ trợ 24/7</h4>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Footer -->
+            <%- include('../partials/footer'); %>
+
+              <!-- Back to top -->
+              <div class="btn-back-to-top" id="myBtn">
+                <span class="symbol-btn-back-to-top">
+                  <i class="zmdi zmdi-chevron-up"></i>
+                </span>
+              </div>
+
+              <!-- Script -->
+              <%- include('../partials/js'); %>
+                <script src="/js/number-product.js"></script>
+                <script src="/js/post-cart.js"></script>
+</body>
+
+</html>

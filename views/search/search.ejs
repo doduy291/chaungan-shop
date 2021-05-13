@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search</title>
+   
+    <!--css để ở đây-->
+    <%- include('../partials/css'); %>
+</head>
+<body class="animsition">
+  <!-- Header -->
+  <header class="header-v2">
+    <%- include('../partials/header'); %>
+  </header>
+
+  <!-- sidebar -->
+  <%- include('../partials/sidebar'); %>
+
+  <!-- Cart -->
+  <%- include('../partials/cart'); %> 
+
+  <!-- Track Order -->
+  <div class="container">
+    <% if(message_success.length || message_err.length > 0 ) { %>
+      <% if(message_success.length !== 0) {%>
+        <div class="alert alert-success" role="alert">
+          <strong><%= message_success %></strong> 
+        </div>
+      <% } %>
+      <% if(message_err.length !== 0) {%>
+        <div class="alert alert-danger" role="alert">
+          <strong><%= message_err %></strong> 
+        </div>
+    <% }} %>
+    <div class="search-order">
+    <% if(searchHD === undefined) {%>
+    <form action="/cart/tim-kiem-hd" method="GET">
+      <div class="form-search-order">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input type="text" class="search-order-input" name="sohoadon" placeholder="Tìm kiếm theo mã hóa đơn (Ví dụ: HD20202342343)">
+        <button type="submit" class="search-order-btn">Tìm kiếm</button>
+      </div>  
+    </form>
+    <article class="card">
+      <header class="card-header"> Đơn hàng </header>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xs-10 m-b-50">
+            <div class="empty-cart-icon">
+              <img src="/images/icons/empty-cart-icon.jpg" alt="IMG">
+              <h5>Không có đơn hàng</h5>           
+            </div>
+          </div>
+        </div>   
+      </div>
+  </article>
+    <% } else { %>
+    <form action="/cart/tim-kiem-hd" method="GET">
+      <div class="form-search-order">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input type="text" class="search-order-input" name="sohoadon" placeholder="Tìm kiếm theo mã hóa đơn (Ví dụ: HD20202342343)">
+        <button type="submit" class="search-order-btn">Tìm kiếm</button>
+      </div>  
+    </form>
+    <article class="card">
+        <header class="card-header"> Đơn hàng </header>
+        
+        <% for(i in searchHD) { %>
+        <div class="card-body">
+            <h6>Mã hóa đơn: <h6 id="sohoadon-hdkh"><%= searchHD[i].sohoadon %></h6></h6>
+            <article class="card">
+                <div class="card-body row">
+                  <% var formatter = new Intl.DateTimeFormat("en-US");%>
+                    <% const ngayuoctinh = new Date(searchHD[i].ngaytaohoadon);  %>
+                    <% ngayuoctinh.setDate(ngayuoctinh.getDate() + 5) %>
+                    
+                    <div class="col-4"> <strong>Thời gian giao hàng ước tính :</strong> <br><%= new Intl.DateTimeFormat('en-GB').format(ngayuoctinh) %> </div>
+                    <div class="col-4"> <strong>Vận chuyển hàng bởi:</strong> <br> Giao Hàng Tiết Kiệm </div>
+                    <% if(searchHD[i].trangthaihoadon === 1) { %>
+                    <div class="col-4"> <strong>Trạng thái :</strong> <br> Chờ xác nhận đơn hàng </div>   
+                    <% } %>
+                    <% if(searchHD[i].trangthaihoadon === 2) { %>
+                    <div class="col-4"> <strong>Trạng thái :</strong> <br> Đã xác nhận đơn hàng </div>   
+                    <% } %>
+                    <% if(searchHD[i].trangthaihoadon === 3) { %>
+                    <div class="col-4"> <strong>Trạng thái :</strong> <br> Đã đóng gói - chờ vận chuyển </div>  
+                    <% } %>   
+                    <% if(searchHD[i].trangthaihoadon === 4) { %>
+                    <div class="col-4"> <strong>Trạng thái :</strong> <br> Đang vận chuyển </div>  
+                    <% } %> 
+                    <% if(searchHD[i].trangthaihoadon === 5) { %>
+                    <div class="col-4"> <strong>Trạng thái :</strong> <br> Hoàn thành </div>  
+                    <% } %>    
+                    <% if(searchHD[i].trangthaihoadon === 6) { %>
+                      <div class="col-4"> <strong>Trạng thái :</strong> <br> Hàng bị hủy </div>  
+                    <% } %>       
+                    
+                </div>
+            </article>
+            <div class="track">
+                <% if(searchHD[i].trangthaihoadon === 1) { %>
+                  <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-archive"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+                <% if(searchHD[i].trangthaihoadon === 2) { %>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-archive"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+                <% if(searchHD[i].trangthaihoadon === 3) { %>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-archive"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+                <% if(searchHD[i].trangthaihoadon === 4) { %>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step"> <span class="icon"> <i class="fa fa-archive"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+                <% if(searchHD[i].trangthaihoadon === 5) { %>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step active"> <span class="icon"> <i class="fa fa-archive"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+                <% if(searchHD[i].trangthaihoadon === 6) { %>
+                  <div class="step active-cancel"> <span class="icon"> <i class="fa fa-ban"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                  <div class="step active-cancel"> <span class="icon"> <i class="fa fa-ban"></i> </span> <span class="text"> Đóng gói - Sẵn sàng giao hàng</span> </div>
+                  <div class="step active-cancel"> <span class="icon"> <i class="fa fa-ban"></i> </span> <span class="text"> Đang vận chuyển </span> </div>
+                  <div class="step active-cancel"> <span class="icon"> <i class="fa fa-ban"></i> </span> <span class="text">Đã nhận hàng</span> </div>
+                <% } %>
+            </div>
+            <hr>
+            <hr>
+        
+            <label>* Đã được vận chuyển sẽ không được hủy đơn hàng</label>
+            <% if(searchHD[i].nonkhachhang.email || searchHD[i].khachhang.email !== null) {%>
+            <% if(searchHD[i].trangthaihoadon <= 3) { %>
+            <button  class="btn btn-warning"  data-toggle="modal" data-target="#cancelorder" data-abc="true">
+              <i class="fa fa-ban"></i> Hủy đơn hàng
+            </button>
+            <% }} %>
+        </div>
+        <% } %>
+    </article>
+    <% } %>
+  </div>
+</div>
+
+<!-- Footer -->
+<%- include('../partials/footer'); %>
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+  <span class="symbol-btn-back-to-top">
+    <i class="zmdi zmdi-chevron-up"></i>
+  </span>
+</div>
+<% if(searchHD !== undefined) {%>
+<div class="modal fade modal-centered" id="cancelorder">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Xác nhận hủy đơn hàng</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="/cart/confirm-cancel-order" method="POST">
+          <% for(i in searchHD) { %>
+          <input name="sohoadonhuyhang" type="hidden" value="<%= searchHD[i].sohoadon %>">
+          <% if(searchHD[i].nonkhachhang.email !== null && searchHD[i].khachhang.email === null) { %>
+          <label>*Mã hủy đơn được gửi qua gmail: <h5 style="display: inline; color:red;" id="email-hdkh"><%= searchHD[i].nonkhachhang.email %></h5></label>
+          <% } else { %>
+          <label>*Mã hủy đơn được gửi qua gmail: <h5 style="display: inline; color:red" id="email-hdkh"><%= searchHD[i].khachhang.email %></h5></label>
+          <% } %>
+          <% } %>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nhập mã hủy hàng: </label>
+            <input type="text" class="form-control" name="mahuyhang" id="mahuyhang">
+            
+            <div class="countdown-mahuydon">
+              <span id="count">60</span> Giây 
+              <button type="button" class="btn btn-default" id="send-maxacnhan">Gửi mã xác nhận</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-warning"> Xác nhận hủy </button>
+          </div>
+        </form>
+      </div>    
+    </div>
+  </div>
+</div>
+<% } %>
+<!-- Script  -->
+<%- include('../partials/js'); %>
+<script>
+  
+</script>
+<script src="/js/post-sendcode.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Châu Ngân | Hóa đơn</title>
+
+    <%- include('../../../partials/css-admin'); %>
+        <!--=============================================================================================-->
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('../../../partials/header-admin'); %>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/admin/tongquan" class="brand-link">
+                    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">Trang quản lý</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+
+                    <!-- SidebarSearch Form -->
+
+                    <!-- Sidebar Menu -->
+                    <%- include('../../../partials/menu-admin'); %>
+                        <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Hóa Đơn Chờ Duyệt</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Hóa đơn chờ duyệt</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <!-- <div class="card-header">
+                                        <h3 class="card-title"></h3>
+                                    </div> -->
+                                    <!-- /.card-header -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Số hóa đơn</th>
+                                                        <th>Tên khách</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Duyệt</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <% if(listHDchuaduyet.length> 0) { for(var i = 0; i <
+                                                            listHDchuaduyet.length; i++) { %>
+                                                            <tr>
+                                                                <td scope="row">
+                                                                    <%= (i+1) %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= listHDchuaduyet[i].sohoadon %>
+                                                                </td>
+                                                                <% if(listHDchuaduyet[i].idkhachhang===null){ %>
+                                                                    <td>
+                                                                        <!-- ten khach hang -->
+                                                                        <%= listHDchuaduyet[i].nonkhachhang.hovaten %>
+                                                                            <i style="color: red;"> - WEB</i>
+                                                                    </td>
+                                                                    <%}else{%>
+                                                                        <td>
+                                                                            <!-- ten khach hang -->
+                                                                            <%= listHDchuaduyet[i].khachhang.tenkhachhang
+                                                                                %>
+                                                                                <i style="color: blue;"> - PM</i>
+                                                                        </td>
+                                                                        <%}%>
+                                                                            <td>
+                                                                                <%= listHDchuaduyet[i].nguoidung.tennguoidung
+                                                                                    %>
+                                                                            </td>
+                                                                            <td style="width:10%;">
+                                                                                <% var x=new Intl.NumberFormat({
+                                                                                    style: 'currency' , currency: 'VND'
+                                                                                    }).format(listHDchuaduyet[i].tongtien)
+                                                                                    %>
+                                                                                    <b style="color: green;">
+                                                                                        <%= x %>
+                                                                                    </b> đ
+                                                                            </td>
+                                                                            <td>
+                                                                                <% var a=new Date(
+                                                                                    listHDchuaduyet[i].ngaytaohoadon) %>
+                                                                                    <% var b=", " + a.getDate() +"-"+
+                                                                                        (a.getMonth() + 1) +"-"+
+                                                                                        a.getFullYear()
+                                                                                        +" "+ a.getHours() + " :" +
+                                                                                        a.getMinutes() %>
+                                                                                        <% if(a.getDay()==0){ %>
+                                                                                            Chủ nhật
+                                                                                            <%}else if(a.getDay()==1){%>
+                                                                                                Thứ 2
+                                                                                                <%}else
+                                                                                                    if(a.getDay()==2){%>
+                                                                                                    Thứ 3
+                                                                                                    <%}else
+                                                                                                        if(a.getDay()==3){%>
+                                                                                                        Thứ 4
+                                                                                                        <%}else
+                                                                                                            if(a.getDay()==4){%>
+                                                                                                            Thứ 5
+                                                                                                            <%}else
+                                                                                                                if(a.getDay()==5){%>
+                                                                                                                Thứ 6
+                                                                                                                <%}else
+                                                                                                                    if(a.getDay()==6){%>
+                                                                                                                    Thứ
+                                                                                                                    7
+                                                                                                                    <%}%>
+                                                                                                                        <%= b
+                                                                                                                            %>
+                                                                            </td>
+                                                                            <% if(listHDchuaduyet[i].tinhtrang==1){ %>
+                                                                                <td>
+                                                                                    <b style="color: green;">Đã thanh
+                                                                                        toán</b>
+                                                                                </td>
+                                                                                <%}else{%>
+                                                                                    <td>
+                                                                                        <b style="color: red;">Chưa
+                                                                                            thanh toán</b>
+                                                                                    </td>
+                                                                                    <%}%>
+                                                                                        <td>
+                                                                                            <% if(listHDchuaduyet[i].trangthaihoadon=1){
+                                                                                                %>
+                                                                                                <b style="color: red;">Chờ
+                                                                                                    duyệt</b>
+                                                                                                <%}%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <a href="/admin/tongquan/hoadonchoduyet/<%=listHDchuaduyet[i].idhoadon%>"
+                                                                                                class="btn btn-primary">duyệt</a>
+                                                                                        </td>
+                                                            </tr>
+                                                            <%}};%>
+                                                </tbody>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Số hóa đơn</th>
+                                                        <th>Tên khách</th>
+                                                        <th>Người tạo</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Duyệt</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="float-right d-none d-sm-block">
+                    <b>Version</b> 3.1.0-pre
+                </div>
+                <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+                reserved.
+            </footer>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Script -->
+    <%- include('../../../partials/js-admin'); %>
+
+</body>
+
+</html>

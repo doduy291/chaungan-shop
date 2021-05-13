@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Châu Ngân | Quản lý</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="../jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="../summernote/summernote-bs4.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <%- include('../partials/header-admin'); %>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/admin/tongquan" class="brand-link">
+                    <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light"><b>CHÂU NGÂN</b></span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+
+                    <!-- Sidebar Menu -->
+                    <%- include('../partials/menu-admin'); %>
+                        <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <h4 class="m-0">Hoạt động hôm nay</h4>&nbsp;&nbsp;
+                                    <h4 id="today" style="color:green"></h4>
+                                </div>
+                                <div class="row">
+                                    <button><a href="/admin/tongquan/hoadonchoduyet" style="color: red;">
+                                            <%= HDchuaduyet.hoadonchuaduyet %> đơn chờ duyệt
+                                        </a></button>
+                                </div>
+
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Tổng quan</li>
+                                </ol>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <!-- Small boxes (Stat box) -->
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <% var x=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                            }).format(HDToday.tongtiendathanhtoanToday) %>
+                                            <% if(HDToday.tongtiendathanhtoanToday !==null){ %>
+                                                <h5>
+                                                    <%= x %> đ
+                                                </h5>
+                                                <%}else{%>
+                                                    <h5>
+                                                        0 đ
+                                                    </h5>
+                                                    <%}%>
+                                                        <p>Tiền bán hàng : </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a href="/admin/tongquan/hoadondathanhtoan" class="small-box-footer">Xem <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <h5>
+                                                <%= DonhangToday.tongsohoadonToday %>
+                                            </h5>
+                                            <h5>/</h5>
+                                            <h5>
+                                                <%= SP.tongsanpham %>
+                                            </h5>
+                                        </div>
+                                        <p>Đơn hàng / Sản phẩm : </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a href="/admin/tongquan/danhsachhoadon" class="small-box-footer">Xem <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h5>
+                                            <%= Hangkhachtratrongngay.hangkhachtra %> /
+                                                <% var y=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                    }).format(Khachnotrongngay.khachnotrongngay) %>
+                                                    <%= y %> đ
+
+                                        </h5>
+                                        <p>Hàng khách trả / khách nợ : </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a href="/admin/tongquan/hangkhachtravakhachno#hangkhachtra"
+                                        class="small-box-footer">Xem <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h5>
+                                            <%= Donhangweb.donhangweb %> /
+                                                <%= Donhangshop.donhangtaishop %>
+                                        </h5>
+                                        <p>Đơn hàng web / tại shop :</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a href="/admin/tongquan/danhsachhoadon" class="small-box-footer">Xem <i
+                                            class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                        </div>
+                        <!-- /.row -->
+                        <!-- Main row -->
+                        <div class="row">
+                            <div class="col-lg-4 col-6">
+                                <!-- small box -->
+                                <div class="small-box">
+                                    <div class="inner">
+                                        <div class="row">
+                                            <h5><b>Hoạt động tháng trước</b></h5>
+                                        </div>
+                                        <p>Tổng thu :
+                                            <% var x=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                }).format(Tongtienthangtruoc.tongtienthangtruoc) %>
+                                                <b style="color: green;">
+                                                    <%= x %>
+                                                </b>đ
+                                                </br>
+
+                                                Tổng chi :
+                                                <% var y=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                    }).format(Tongchithangtruoc.tongtienthangtruoc) %>
+                                                    <b style="color: red;">
+                                                        <%= y %>
+                                                    </b>đ </br>
+                                                    Lợi nhuận :
+                                                    <% var z=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                        }).format((Tongtienthangtruoc.tongtienthangtruoc)-(Tongchithangtruoc.tongtienthangtruoc)-(Khachnothangtruoc.khachnnothangtruoc))
+                                                        %>
+                                                        <b style="color: blue;">
+                                                            <%= z %>
+                                                        </b> đ </br>
+                                                        Số đơn hàng :
+                                                        <b>
+                                                            <%= HDthangtruoc.hoadonthangtruoc %>
+                                                        </b> </br>
+
+                                                        + Đã thanh toán:
+                                                        <b style="color: green;">
+                                                            <%= HDdathanhtoanthangtruoc.hoadondathanhtoanthangtruoc %>
+                                                        </b>
+                                                        </br>
+
+                                                        + Chưa thanh toán:
+                                                        <b style="color: red;">
+                                                            <%= HDchuathanhtoanthangtruoc.hoadondathanhtoanthangtruoc %>
+                                                        </b>
+                                                        </br>
+
+                                                        Số sản phẩm bán:
+                                                        <b style="color: blue;">
+                                                            <%= SPbanthangtruoc.sanphambanthangtruoc %>
+                                                        </b> </br>
+
+                                                        Hàng khách trả :
+                                                        <b style="color: red;">
+                                                            <%= Trahangthangtruoc.hangkhachtrathangtruoc %>
+                                                        </b> </br>
+
+                                                        <% if(Khachnothangtruoc.khachnnothangtruoc==0){ %>
+                                                            Khách nợ : 0 đ
+                                                            <% }else{ %>
+                                                                Khách nợ :
+                                                                <% var z=new Intl.NumberFormat({ style: 'currency' ,
+                                                                    currency: 'VND'
+                                                                    }).format(Khachnothangtruoc.khachnnothangtruoc ) %>
+                                                                    <b style="color: red;">
+                                                                        <%= z %>
+                                                                    </b> đ </br>
+                                        </p>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-6">
+                                <!-- small box -->
+                                <div class="small-box">
+                                    <div class="inner">
+                                        <h5><b>Hoạt động tháng này</b></h5>
+                                        <p>Tổng thu :
+                                            <% var x=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                }).format(Tienbanhangthang.tienbanhangthang) %>
+                                                <b style="color: green;">
+                                                    <%= x %>
+                                                </b>đ </br>
+
+                                                Tổng chi :
+                                                <% var y=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                    }).format(Tongchitrongthang.tongchitrongthang) %>
+                                                    <b style="color: red;">
+                                                        <%= y %>
+                                                    </b>đ </br>
+                                                    Lợi nhuận :
+                                                    <% var z=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                        }).format((Tienbanhangthang.tienbanhangthang)-(Tongchitrongthang.tongchitrongthang)-(Khachnotrongthang.khachnotrongthang))
+                                                        %>
+                                                        <b style="color: blue;">
+                                                            <%= z %>
+                                                        </b> đ
+                                                        </br>
+                                                        Số đơn hàng :
+                                                        <b>
+                                                            <%= Tongdonhang.tongdonhang %>
+                                                        </b> </br>
+
+                                                        + Đã thanh toán:
+                                                        <b style="color: green;">
+                                                            <%= Dathanhtoan.hoadondathanhtoan %>
+                                                        </b> </br>
+
+                                                        + Chưa thanh toán:
+                                                        <b style="color: red;">
+                                                            <%= Chuathanhtoan.hoadonchuathanhtoan %>
+                                                        </b> </br>
+
+                                                        Số sản phẩm bán:
+                                                        <b style="color: blue;">
+                                                            <%= SPbantrongthang.sanphambantrongthang %>
+                                                        </b> </br>
+
+                                                        <% if(Trahang.hangkhachtrathanghientai=0){ %>
+                                                            Hàng khách trả :
+                                                            <b>0</b> </br>
+                                                            <%}else{%>
+                                                                Hàng khách trả :
+                                                                <b style="color: red;">
+                                                                    <%= Trahang.hangkhachtrathanghientai %>
+                                                                </b> </br>
+                                                                <%}%>
+
+                                                                    <% if(Khachnotrongthang.khachnotrongthang=0){ %>
+                                                                        Khách nợ : <b>0</b> đ </br>
+                                                                        <% }else{ %>
+                                                                            Khách nợ :
+                                                                            <% var t=new Intl.NumberFormat({
+                                                                                style: 'currency' , currency: 'VND'
+                                                                                }).format(Khachnotrongthang.khachnotrongthang)
+                                                                                %>
+                                                                                <b style="color: red;">
+                                                                                    <%= t %>
+                                                                                </b> đ </br>
+                                        </p>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-6">
+                                <!-- small box -->
+                                <div class="small-box">
+                                    <div class="inner">
+                                        <h5><b>Thông tin hôm nay</b></h5>
+                                        <p>
+                                            Tiền bán hàng :
+                                            <% var x=new Intl.NumberFormat({ style: 'currency' , currency: 'VND'
+                                                }).format(HDToday.tongtiendathanhtoanToday) %>
+                                                <% if(HDToday.tongtiendathanhtoanToday !==null){ %>
+                                                    <b style="color: green;">
+                                                        <%= x %>
+                                                    </b> đ
+                                                    <%}else{%>
+                                                        <b style="color: green;">0</b> đ
+                                                        <%}%>
+                                                            </br>
+
+                                                            <% if(SPbantrongngay.sanphambantrongngay=0){ %>
+                                                                Sản phẩm bán : <b>0</b> </br>
+                                                                <%}else{ %>
+                                                                    Sản phẩm bán :
+                                                                    <b>
+                                                                        <%= SPbantrongngay.sanphambantrongngay %>
+                                                                    </b>
+                                                                    <%}%>
+                                                                        </br>
+
+                                                                        <% if(Trahangtrongngay.trahangtrongngay=0){ %>
+                                                                            Sản phẩm trả : <b>0</b> </br>
+                                                                            <%}else{%>
+                                                                                Sản phẩm trả :
+                                                                                <b>
+                                                                                    <%= Trahangtrongngay.trahangtrongngay
+                                                                                        %>
+                                                                                </b>
+                                                                                <%}%>
+
+                                                                                    </br>
+
+                                                                                    Tồn kho :
+                                                                                    <b style="color: blue;">
+                                                                                        <%= Tonkho.tongtonkho %>
+                                                                                    </b>
+                                                                                    </br>
+
+                                                                                    Sắp hết hàng :
+                                                                                    <b style="color: red;">
+                                                                                        <%= Saphethang.saphethang %>
+                                                                                    </b> </br>
+
+                                                                                    Hết hàng :
+                                                                                    <b style="color: red;">
+                                                                                        <%= Hethang.hethang %>
+                                                                                    </b> </br>
+
+                                                                                    Sản phẩm / Nhà sản xuất :
+                                                                                    <b>
+                                                                                        <%= SP.tongsanpham %>
+                                                                                    </b>/
+                                                                                    <b>
+                                                                                        <%= NCC.soNCC %>
+                                                                                    </b> </br>
+
+
+                                                                                    Loại sản phẩm :
+                                                                                    <b>
+                                                                                        <%= LoaiSP.loaiSP %>
+                                                                                    </b> </br>
+
+                                                                                    Số kệ :
+                                                                                    <b>
+                                                                                        <%= KeSP.keSP %>
+                                                                                    </b> </br>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row (main row) -->
+                    </div>
+                    <!-- /.container-fluid -->
+
+                    <!--=====================================================================================-->
+                    <!--THÁI LÀM MODAL-->
+            </div>
+
+            <!--=====================================================================================-->
+            </section>
+            <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../jqvmap/jquery.vmap.min.js"></script>
+    <script src="../jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../moment/moment.min.js"></script>
+    <script src="../daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../dist/js/pages/dashboard.js"></script>
+    <!-- get month curmonth -->
+    <script>
+        var d = new Date();
+        document.getElementById("getmonth").innerHTML = d.getMonth() + 1;
+    </script>
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = dd + '/' + mm + '/' + yyyy;
+        document.getElementById("today").innerHTML = today;
+    </script>
+    <script>
+        var page = window.location.pathname;
+        $('.main-menu-admin li')
+            .find('a[href="' + page + '"]')
+            .addClass('active');
+    </script>
+
+</body>
+
+</html>

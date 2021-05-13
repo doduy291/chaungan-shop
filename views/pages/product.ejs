@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sản phẩm</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%- include('../partials/css'); %>
+  
+</head>
+
+<body class="animsition">
+    <!-- Header -->
+    <header class="header-v2">
+        <%- include('../partials/header'); %>
+    </header>
+ 
+    <!-- sidebar -->
+    <%- include('../partials/sidebar'); %>
+    
+    <!-- Cart -->
+    <%- include('../partials/cart'); %>
+
+    <!-- Product -->
+    <div class="bg0 m-t-23">
+      <div class="container">
+        <!-- Filter Product   -->
+        <%- include('../partials/filter-product'); %>
+        <!-- End Filter Product -->
+        
+        <!-- List Product -->
+        <% if(Number(currentPage) <= Number(totalPages)) {%>
+        <div class="row isotope-grid list-prd">
+              <% const formatter = new Intl.NumberFormat('vi-VN', {minimumFractionDigits: 0});%>
+              <% if(listSP.length>0) { for(var i = 0; i< listSP.length; i++) { %>
+                <% listSP[i].anhsanpham = new Buffer(listSP[i].anhsanpham).toString('base64'); %>            
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item tag<%= listSP[i].idloaisanpham %>">
+                  <!-- Block2 -->
+                  <div class="block2">
+                    <div class="block2-pic hov-img0">            
+                      <img src="data:image/jpeg;base64, <%= listSP[i].anhsanpham %>" height="285" alt="IMG-PRODUCT" />            
+                      <a href="/product-detail/<%= listSP[i].tensanpham %>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                        Chi tiết
+                      </a>
+                    </div>
+                    <div class="block2-txt flex-w flex-t p-t-14">
+                      <div class="block2-txt-child1 flex-col-l">
+                        <a href="/product-detail/<%= listSP[i].tensanpham %>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                          <%= listSP[i].tensanpham %>
+                        </a>
+                        <span class="stext-105 cl3 giaban"> <%= formatter.format(listSP[i].giabanle) %> VNĐ</span>
+                      </div>
+                    
+                      <div class="block2-txt-child2 flex-r p-t-3">
+                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                          <img class="icon-heart1 dis-block trans-04" src="/images/icons/icon-heart-01.png" alt="ICON" />
+                          <img
+                            class="icon-heart2 dis-block trans-04 ab-t-l"
+                            src="/images/icons/icon-heart-02.png"
+                            alt="ICON"
+                          />
+                        </a>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+                <% }} %>
+ 
+        
+          </div>
+          <!-- Pagination -->
+          <div class="flex-c-m flex-w w-full p-t-33 p-b-38">
+         
+            <% var i = (Number(currentPage) > 3 ? Number(currentPage) - 2 : 1) %>
+            <% for(; i <= (Number(currentPage) + 2) && i <= totalPages; i++) { %>
+              <% if(i === currentPage) { %>
+              <a href="/product/filter/?page=<%= i %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %>%><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>" 
+                class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"> <%= i %> </a>
+                <% } else { %>
+              <a href="/product/filter/?page=<%= i %><% if(timkiemsp) { %>&timkiemsp=<%= timkiemsp.replace(' ','+') %><% } %><% if(loaido) { %>&ld=<%= loaido %><% } %><% if(loaisanpham) { %>&lsp=<%= loaisanpham %><% } %>%><% if(hang) { %>&hang=<%= hang %><% } %><% if(orderNewest) { %>&orderNewest=<%= orderNewest %><% } %><% if(orderPrice) { %>&orderPrice=<%= orderPrice %><% } %>" class="flex-c-m how-pagination1 trans-04 m-all-7"> <%= i %> </a>
+              <% } %>
+              <% if (i === Number(currentPage) + 2 && i < totalPages) { %>
+                <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">...</a>
+              <% }}%>
+          </div>
+          <!-- pagination -->
+          <% } else { %>
+            <div class="row">
+              <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xs-10 m-b-50">
+                <div class="empty-cart-icon">
+                  <img src="/images/icons/empty-cart-icon.jpg" alt="IMG">
+                  <h5>Không có sản phẩm</h5>           
+                </div>
+              </div>
+            </div>  
+          <% } %>
+      </div>
+    </div>
+    </div>
+
+ <!-- Support section -->
+ <section id="aa-support">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="aa-support-area">
+          <!-- single support -->
+          <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+            <div class="aa-support-single">
+              <span class="fa fa-truck"></span>
+              <h4>Vận chuyển nhanh chóng</h4>
+            </div>
+          </div>
+          <!-- single support -->
+          <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+            <div class="aa-support-single">
+              <span class="fa fa-clock-o"></span>
+              <h4>Nhận đặt trước tại shop</h4>
+            </div>
+          </div>
+          <!-- single support -->
+          <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+            <div class="aa-support-single">
+              <span class="fa fa-phone"></span>
+              <h4>Hỗ trợ 24/7</h4>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Support section -->
+    <!-- Footer -->
+    <%- include('../partials/footer'); %>
+    <!-- End footer-->
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+      <span class="symbol-btn-back-to-top">
+        <i class="zmdi zmdi-chevron-up"></i>
+      </span>
+    </div>
+    <!-- //Script// -->
+    <%- include('../partials/js'); %>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Trang chủ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--css home03 để ở đây-->
+  <%- include('../partials/css'); %>
+    <script src="/js/noel.js"></script>
+</head>
+
+<body class="animsition">
+  <!-- Header -->
+  <header class="header-v2">
+    <%- include('../partials/header'); %>
+  </header>
+
+  <!-- sidebar -->
+  <%- include('../partials/sidebar'); %>
+
+    <!-- Cart -->
+    <%- include('../partials/cart'); %>
+
+      <!-- Slider -->
+      <section class="section-slide">
+        <div class="wrap-slick1 rs2-slick1">
+          <div class="slick1">
+            <div class="item-slick1 bg-overlay1" style="background-image: url(/images/slide-05.jpg)"
+              data-thumb="/images/thumb-01.jpg" data-caption="Đồ nữ">
+              <div class="container h-full">
+                <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+                  <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+                    <span class="ltext-202 txt-center cl0 respon2"> ĐỒ NỮ TREND 2020 </span>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
+                    <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">Hàng mới về</h2>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+                    <a href="/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                      Shop
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item-slick1 bg-overlay1" style="background-image: url(/images/slide-06.jpg)"
+              data-thumb="/images/thumb-02.jpg" data-caption="Đồ nam">
+              <div class="container h-full">
+                <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+                  <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
+                    <span class="ltext-202 txt-center cl0 respon2"> ĐỒ NAM THU ĐÔNG </span>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
+                    <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">Áo Nỉ</h2>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
+                    <a href="/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                      Shop
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="item-slick1 bg-overlay1" style="background-image: url(/images/slide-07.jpg)"
+              data-thumb="/images/thumb-03.jpg" data-caption="Đồ nam">
+              <div class="container h-full">
+                <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+                  <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
+                    <span class="ltext-202 txt-center cl0 respon2"> ĐỒ NAM TREND 2020 </span>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
+                    <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">Mùa mới</h2>
+                  </div>
+
+                  <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
+                    <a href="/product" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                      Shop
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrap-slick1-dots p-lr-10"></div>
+        </div>
+      </section>
+
+      <!-- Banner -->
+      <div class="sec-banner bg0 p-t-95 p-b-55">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 p-b-30 m-lr-auto">
+              <!-- Block1 -->
+              <div class="block1 wrap-pic-w">
+                <img src="/images/banner-04.jpg" alt="IMG-BANNER" />
+
+                <a href="/product/filter/?page=1&ld=Nữ"
+                  class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                  <div class="block1-txt-child1 flex-col-l">
+                    <span class="block1-name ltext-102 trans-04 p-b-8"> Đồ Nữ </span>
+                  </div>
+
+                  <div class="block1-txt-child2 p-b-4 trans-05">
+                    <div class="block1-link stext-101 cl0 trans-09">Shop</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-md-6 p-b-30 m-lr-auto">
+              <!-- Block1 -->
+              <div class="block1 wrap-pic-w">
+                <img src="/images/banner-05.jpg" alt="IMG-BANNER" />
+
+                <a href="/product/filter/?page=1&ld=Nam"
+                  class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                  <div class="block1-txt-child1 flex-col-l">
+                    <span class="block1-name ltext-102 trans-04 p-b-8"> Đồ Nam </span>
+                  </div>
+
+                  <div class="block1-txt-child2 p-b-4 trans-05">
+                    <div class="block1-link stext-101 cl0 trans-09">Shop</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog -->
+      <section class="sec-blog bg0 p-t-60 p-b-90">
+        <div class="container">
+          <div class="p-b-66">
+            <h3 class="ltext-105 cl5 txt-center respon1">
+              Blog thời trang
+            </h3>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6 col-md-4 p-b-40">
+              <div class="blog-item">
+                <div class="hov-img0">
+                  <a href="#">
+                    <img src="/images/blog-01.jpg" alt="IMG-BLOG">
+                  </a>
+                </div>
+
+                <div class="p-t-15">
+                  <h4 class="p-b-12">
+                    <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
+                      Gợi ý 10 mẫu áo khoác mùa đông nữ đẹp và thời trang nhất
+                    </a>
+                  </h4>
+                  <p class="stext-108 cl6">
+                    Đối với các cô nàng, một chiếc áo khoác mùa đông đơn giản không chỉ có giúp giữ ấm mà còn là một
+                    item mang đậm phong cách thời trang. Những ngày đông là lúc các mẫu áo này được các cô nàng diện
+                    nhiều nhất, với nhiều cách phối đồ cá tính khác nhau.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 p-b-40">
+              <div class="blog-item">
+                <div class="hov-img0">
+                  <a href="#">
+                    <img src="/images/blog-02.jpg" alt="IMG-BLOG">
+                  </a>
+                </div>
+
+                <div class="p-t-15">
+                  <h4 class="p-b-12">
+                    <a href="#" class="mtext-101 cl2 hov-cl1 trans-04">
+                      Tips phối đồ chuẩn dành cho mùa đông
+                    </a>
+                  </h4>
+                  <p class="stext-108 cl6">
+                    Mùa đông ngoài giữ ấm cơ thể còn phải mặc làm sao cho thời trang, nhưng nếu kết hợp trang phục không
+                    phù hợp sẽ làm bạn kém duyên hơn đấy. Gợi ý tips phối đồ chuẩn dành cho mùa đông đẹp và đơn giản
+                    nhất, bạn có thể tham khảo ngay!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 p-b-40">
+              <div class="blog-item">
+                <div class="hov-img0">
+                  <a href="blog-detail.html">
+                    <img src="/images/blog-03.jpg" alt="IMG-BLOG">
+                  </a>
+                </div>
+
+                <div class="p-t-15">
+                  <h4 class="p-b-12">
+                    <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                      Xu hướng thời trang mùa đông năm 2020 hot nhất cho bạn
+                    </a>
+                  </h4>
+                  <p class="stext-108 cl6">
+                    Khi nói đến thời trang việc chúng ta luôn cập nhật xu hướng mới nhất là điều không thể không làm. Và
+                    liệu rằng bạn đã biết xu hướng thời trang thu đông năm 2020 là gì chưa?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support section -->
+      <section id="aa-support">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="aa-support-area">
+                <!-- single support -->
+                <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                  <div class="aa-support-single">
+                    <span class="fa fa-truck"></span>
+                    <br>
+                    <h4>Vận chuyển nhanh chóng</h4>
+
+                  </div>
+                </div>
+                <!-- single support -->
+                <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                  <div class="aa-support-single">
+                    <span class="fa fa-clock-o"></span>
+                    <br>
+                    <h4>Nhận đặt trước tại shop</h4>
+
+                  </div>
+                </div>
+                <!-- single support -->
+                <div class="col-12 col-md-12 col-lg-4 col-sm-12">
+                  <div class="aa-support-single">
+                    <span class="fa fa-phone"></span>
+                    <br>
+                    <h4>Hỗ trợ 24/7</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- / Support section -->
+      <!-- Footer -->
+      <%- include('../partials/footer'); %>
+        <!-- End footer -->
+
+        <!-- Back to top -->
+        <div class="btn-back-to-top" style="z-index: 9999;" id="myBtn">
+          <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+          </span>
+        </div>
+        <!-- Script -->
+        <%- include('../partials/js'); %>
+</body>
+</html>

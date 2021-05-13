@@ -1,0 +1,50 @@
+.rb-paymethod {
+  position: block;
+  border-bottom: 1px solid #e5e5e5;
+}
+.rb-container {
+  display: flex;
+  position: relative;
+  font-size: 15px;
+  user-select: none;
+  padding-left: 40px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.rb-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #eee;
+  border-radius: 50%;
+}
+.rb-container:hover .checkmark {
+  background: #ccc;
+}
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.rb-container .checkmark:after {
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: solid 3px white;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.rb-container input:checked ~ .checkmark {
+  background: #2196f3;
+}
+.rb-container input:checked ~ .checkmark:after {
+  display: block;
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Châu Ngân | Nhà cung cấp</title>
+
+    <%- include('../../../partials/css-admin'); %>
+        <!--=============================================================================================-->
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <%- include('../../../partials/header-admin'); %>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/admin/tongquan" class="brand-link">
+                    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light"><b>CHÂU NGÂN</b></span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+
+                    <!-- Sidebar Menu -->
+                    <%- include('../../../partials/menu-admin'); %>
+                        <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Nhà cung cấp</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Nhà Cung cấp</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+
+                                    <div class="card-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên NCC</th>
+                                                    <th>Mã NCC</th>
+                                                    <th>Loại</th>
+                                                    <th>SĐT</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Tỉnh</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(listNCC.length> 0) { for(var i = 0; i < listNCC.length; i++) { %>
+                                                        <tr>
+                                                            <td scope="row">
+                                                                <%= (i+1) %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].tennhacungcap %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].manhacungcap %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].loainhacungcap.tenloainhacungcap %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].sodienthoai %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].diachi %>
+                                                            </td>
+                                                            <td>
+                                                                <%= listNCC[i].tinh %>
+                                                            </td>
+                                                        </tr>
+                                                        <%}};%>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Tên NCC</th>
+                                                    <th>Mã NCC</th>
+                                                    <th>Loại</th>
+                                                    <th>SĐT</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Tỉnh</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <!-- /.card -->
+
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.container-fluid -->
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Script -->
+    <%- include('../../../partials/js-admin'); %>
+</body>
+
+</html>
